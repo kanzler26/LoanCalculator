@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Рассчетная информация";
+}
+@model List<LoanCalc.Models.LoanRepaymentPlan>
+
+<main>
+    <table class="table table-bordered">
+        <tr style="background-color: antiquewhite" class="text-center">
+            <th>№</th>
+            <th>Дата платежа</th>
+            <th>Сумма платежа</th>
+            <th>Основной долг</th>
+            <th>Проценты</th>
+            <th>Остаток долга</th>
+        </tr>
+        @{ int i = 1;
+            foreach (LoanCalc.Models.LoanRepaymentPlan item in Model)
+            {
+                <tr class="text-center">
+                    <td>@i</td>
+                    <td> @item.PaymentsDate.ToString("D")</td>
+                    <td> @item.PaymentAmount</td>
+                    <td>@item.MainDebt </td>
+                    <td>@item.BalanceDebtPercent </td>
+                    <td>@item.BalanceDebt </td>
+                </tr>
+                i++;
+            }
+        }
+    </table>
+</main>
