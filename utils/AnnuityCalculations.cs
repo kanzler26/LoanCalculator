@@ -9,7 +9,7 @@ namespace LoanCalc.utils
     /// <summary>
     /// Вспомогательный класс для расчета кредита
     /// </summary>
-    public class AnnuityCalculations
+    public static class AnnuityCalculations
     {
         /// <summary>
         /// расчет анн.платежа
@@ -41,7 +41,7 @@ namespace LoanCalc.utils
         /// <param name="loan">данные по займу</param>
         /// <returns>список объектов LoanRepaymentPlan
         /// для отображения клиенту</returns>
-        public List<LoanRepaymentPlan> PlanRepaymentsInit(LoanView loan)
+        public static List<LoanRepaymentPlan> PlanRepaymentsInit(LoanView loan)
         {
             List<LoanRepaymentPlan> planRepayment = new List<LoanRepaymentPlan>();
             decimal percentInMonth = (decimal)(loan.Rate / 12 / 100);
@@ -78,7 +78,7 @@ namespace LoanCalc.utils
         /// <param name="loan">данные по займу</param>
         /// <returns>список объектов LoanRepaymentPlan
         /// для отображения клиенту</returns>
-        public List<LoanRepaymentPlan> PlanRepaymentByDaysInit(LoanByDaysView loan)
+        public static List<LoanRepaymentPlan> PlanRepaymentByDaysInit(LoanByDaysView loan)
         {
             List<LoanRepaymentPlan> planRepayment = new List<LoanRepaymentPlan>();
             for (int i = 0; i < loan.Duration / loan.PaymentStep; i++)
@@ -92,7 +92,7 @@ namespace LoanCalc.utils
                     plan.MainDebt = lastItem.MainDebt;
                     plan.BalanceDebt = Math.Round(lastItem.BalanceDebt - plan.MainDebt, 2);
                     plan.PaymentAmount = lastItem.PaymentAmount;
-                    plan.PaymentsDate = lastItem.PaymentsDate.AddDays(+1);
+                    plan.PaymentsDate = lastItem.PaymentsDate.AddDays(+3);
                 }
                 else
                 {
@@ -100,7 +100,7 @@ namespace LoanCalc.utils
                     plan.MainDebt = loan.Amount / (loan.Duration / loan.PaymentStep);
                     plan.PaymentAmount = plan.MainDebt + plan.BalanceDebtPercent;
                     plan.BalanceDebt = Math.Round(loan.Amount - plan.MainDebt, 2);
-                    plan.PaymentsDate = DateTime.Now.AddDays(+1);
+                    plan.PaymentsDate = DateTime.Now.AddDays(+3);
                 }
                 planRepayment.Add(plan);
             }

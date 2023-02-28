@@ -49,8 +49,7 @@ namespace LoanCalc.Controllers
             {
                 return new HttpStatusCodeResult(404);
             }
-            AnnuityCalculations calc = new AnnuityCalculations();
-            List<LoanRepaymentPlan> repayments = calc.PlanRepaymentByDaysInit(loan);
+            List<LoanRepaymentPlan> repayments = AnnuityCalculations.PlanRepaymentByDaysInit(loan);
             return View("plan_repayment", repayments);
         }
 
@@ -61,8 +60,7 @@ namespace LoanCalc.Controllers
             {
                 return new HttpStatusCodeResult(404);
             }
-            AnnuityCalculations calc = new AnnuityCalculations();
-            List<LoanRepaymentPlan> repayments = calc.PlanRepaymentsInit(loan);
+            List<LoanRepaymentPlan> repayments = AnnuityCalculations.PlanRepaymentsInit(loan);
             return View("plan_repayment", repayments);
         }
         public void AddModelStateErrors(LoanView loan)
