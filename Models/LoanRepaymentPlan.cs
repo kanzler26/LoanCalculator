@@ -10,7 +10,7 @@ namespace LoanCalc.Models
         public DateTime PaymentsDate { get; set; }
 
         /// <summary>
-        /// сумма платежа
+        /// сумма платежа ds
         /// </summary>
         public decimal PaymentAmount { get; set; }
 
